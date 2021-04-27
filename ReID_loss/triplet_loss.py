@@ -61,7 +61,7 @@ def hard_example_mining(dist_mat, labels, return_inds=False):
     is_neg = labels.expand(N, N).ne(labels.expand(N, N).t())
 
     dist_ap, relative_p_inds = torch.topk(dist_mat[is_pos].contiguous(), N, largest = True)
-    dist_an, relative_n_inds = torch.topk(dist_mat[is_pos].contiguous(), N, largest = False)
+    dist_an, relative_n_inds = torch.topk(dist_mat[is_neg].contiguous(), N, largest = False)
     # # `dist_ap` means distance(anchor, positive)
     # # both `dist_ap` and `relative_p_inds` with shape [N, 1]
     # dist_ap, relative_p_inds = torch.max(
